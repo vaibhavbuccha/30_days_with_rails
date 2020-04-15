@@ -1,0 +1,17 @@
+<% @docs.each do |d| %>
+    <div class="doc">
+      <h3>
+        <%= link_to d.title, doc_path(d.id) %>
+      </h3>
+      <p>
+        <%= truncate(d.body,length:50) %>
+      </p>
+      <p>
+        <i>
+          <small>
+          <%= time_ago_in_words(d.created_at, include_seconds: true) %>
+          </small>
+        </i>
+      </p>
+    </div>
+<%end%>
