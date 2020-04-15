@@ -2,3 +2,12 @@
 <p>
   <%= @doc.body %>
 </p>
+<span>
+   <%= link_to "All Docs" ,docs_path  %>
+</span>
+<span>
+  <%= link_to "Edit Doc" , edit_doc_path(@doc.id) %>
+</span>
+<span>
+    <%= link_to "Trash It" , doc_path(@doc.id), method: :delete , data: {confirm: "Are you sure you want to delete!"} %>
+</span>
