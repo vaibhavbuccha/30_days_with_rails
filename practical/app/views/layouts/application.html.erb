@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
   <head>
     <title>Practical</title>
@@ -10,6 +10,24 @@
   </head>
 
   <body>
+    <div class="row">
+      <div class="col-sm-3">
+            <%= render "shared/sidebar" %>
+      </div>
+      <!-- <div class="col-sm-9"> -->
+        <%= render "layouts/header" %>
+      <!-- </div> -->
+    </div>
+
+
+
+
+    <% if notice  %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+       <p class="alert"><%= alert %></p>
+    <% end %>
     <%= yield %>
   </body>
 </html>
