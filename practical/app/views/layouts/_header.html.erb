@@ -1,0 +1,19 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="<%= root_path %>" >
+        <i class="fa fa-dashboard" >Dashboard</i>
+      </a>
+    </div>
+     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+       <ul class="nav navbar-nav navbar-right">
+         <li><a href=""><%= current_user.first_name+' '+current_user.last_name %></a></li>
+          <li>
+              <!-- <i class="fa fa-sign-out" > -->
+                <%= link_to :Logout, destroy_user_session_path , :method => "delete" %>
+              <!-- </i> -->
+          </li>
+       </ul>
+     </div>
+  </div>
+</nav>
