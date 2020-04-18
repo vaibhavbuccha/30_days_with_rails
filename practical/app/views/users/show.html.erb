@@ -1,0 +1,26 @@
+<div>
+    <h3>
+      User Profile
+    </h3>
+    <hr>
+    <table class=" table table-bordered" >
+        <tr>
+          <th>Name</th>
+          <td>
+            <%= @user.first_name+' '+@user.last_name %>
+          </td>
+        </tr>
+        <tr>
+          <th>email</th>
+          <td>
+            <%= @user.email %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" >
+              <%= link_to "Fix Profile",edit_users_path(@user.id),:class => "btn btn-primary" %>
+              <%= link_to "Delete Account", users_path(@user.id),:method => "delete" ,:class => "btn btn-danger" %>
+          </td>
+        </tr>
+    </table>
+</div>
