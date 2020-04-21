@@ -7,7 +7,7 @@
     </div>
      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
        <ul class="nav navbar-nav navbar-right">
-         <li><a href="<%= users_path(current_user.id) %>"><%= current_user.first_name+' '+current_user.last_name %></a></li>
+         <li><a href="<%= profiles_path(current_user.id) %>"><%= current_user.first_name+' '+current_user.last_name %></a></li>
           <li>
               <!-- <i class="fa fa-sign-out" > -->
                 <%= link_to :Logout, destroy_user_session_path , :method => "delete" %>

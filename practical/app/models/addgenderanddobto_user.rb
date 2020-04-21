@@ -1,0 +1,2 @@
+class AddgenderanddobtoUser < ApplicationRecord
+end

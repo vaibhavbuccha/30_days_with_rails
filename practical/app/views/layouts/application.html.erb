@@ -20,12 +20,13 @@
             <%= render "shared/sidebar" %>
           </div>
           <div class="col-sm-10 content-wrapper">
-            <% if notice  %>
-              <p class="bg-info"><%= notice %></p>
-            <% end %>
-            <% if alert %>
-               <p class="bg-warning"><%= alert %></p>
-            <% end %>
+            <% flash.each do |type,message| %>
+              <% if type == 'notice' || type == 'alert' %>
+                <div class="alert alert-info"><%= message %></div>
+               <%else%>
+                 <div class="alert alert-<%= type %>"><%= message %></div>
+               <%end%>
+            <%end%>
             <%= yield %>
           </div>
 

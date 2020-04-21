@@ -10,9 +10,13 @@
  </head>
 
  <body>
-   <!-- <p>login</p>
-   <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p> -->
+   <% flash.each do |type,message| %>
+     <% if type == 'notice' || type == 'alert' %>
+       <div class="alert alert-info"><%= message %></div>
+      <%else%>
+        <div class="alert alert-<%= type %>"><%= message %></div>
+      <%end%>
+   <%end%>
        <%= yield %>
  </body>
 </html>

@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class ProfilesController < ApplicationController
   before_action :get_user , only: [:show,:edit]
   layout 'application'
   def show
@@ -11,14 +11,21 @@ class UsersController < ApplicationController
     @user = User.find(params[:format])
     if @user.update_attributes(user_params)
         flash[:success] = "Profile Successfully Updated.."
-        redirect_to users_path
+        redirect_to profiles_path
     else
         flash[:danger] = "Somthing Wents Wrong.."
-        redirect_to users_path
+        redirect_to profiles_path
     end
   end
 
   def destroy
+    if User.destroy(params[:format])
+      flash[:success] = "Profile Successfully Deleted.."
+      redirect_to root_path
+    else
+      flash[:danger] = "Somthing Wents Wrong.."
+      redirect_to profiles_path
+    end
   end
 
   private
@@ -27,6 +34,8 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name,:last_name,:email,:image)
+    params.require(:user).permit(:first_name,:last_name,:email,:gender,:dob,:image)
   end
+
+
 end

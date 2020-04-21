@@ -4,7 +4,7 @@
     </h3>
     <hr>
     <table class=" table table-bordered" >
-      <%= form_for( @user,:url => users_path(@user) , :method => "patch") do |f| %>
+      <%= form_for( @user,:url => profiles_path(@user) , :method => "patch") do |f| %>
         <tr>
           <th><%= f.label :first_name %></th>
           <td>
@@ -24,6 +24,18 @@
           </td>
         </tr>
         <tr>
+          <th><%= f.label :gender %></th>
+          <td>
+              <%= radio_button(:user ,'gender' , 1) %> <i class="fa fa-male" > Male</i>   &nbsp;&nbsp; <%= radio_button(:user ,'gender' , 2) %> <i class="fa fa-female" > female</i>
+          </td>
+        </tr>
+        <tr>
+          <th>DOB</th>
+          <td>
+              <%= f.date_field :dob , :class => "form-control" %>
+          </td>
+        </tr>
+        <tr>
           <th><%= f.label :image %></th>
           <td>
             <%= f.file_field :image , :class => "form-control"    %>
@@ -32,7 +44,7 @@
         <tr>
           <td colspan="2" >
               <%= f.submit "Update",:class => "btn btn-primary" %>
-              <%= link_to "Cancel", users_path(@user.id), :class => "btn btn-danger" %>
+              <%= link_to "Cancel", profiles_path(@user.id), :class => "btn btn-danger" %>
           </td>
         </tr>
         <%end%>

@@ -1,0 +1,61 @@
+<div>
+    <h3>
+      User Profile
+    </h3>
+    <hr>
+    <table class=" table table-bordered" >
+        <tr>
+          <th>Name</th>
+          <td>
+            <%= @user.first_name+' '+@user.last_name %>
+          </td>
+        </tr>
+        <tr>
+          <th>email</th>
+          <td>
+            <%= @user.email %>
+          </td>
+        </tr>
+        <tr>
+          <th>DOB</th>
+          <td>
+              <% if @user.dob? %>
+                  <% date = @user.dob %>
+                  <%= date.to_formatted_s(:rfc822)  %>
+              <% else  %>
+                  <p class="text-danger" >Not Set Yet</p>
+              <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th>Gender</th>
+          <td>
+              <% if @user.gender? %>
+                  <% if @user.gender == 1 %>
+                      <p> <i class="fa fa-male" > Male </i> </p>
+                  <% else %>
+                      <p> <i class="fa fa-female" > Female </i> </p>
+                  <% end %>
+              <% else  %>
+                  <p class="text-danger" >Not Set Yet</p>
+              <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th>Image</th>
+          <td>
+            <% if @user.image.attached? %>
+              <%= image_tag(@user.image ,size: "100x100") %>
+            <% else %>
+              <%= image_tag('no_user.png' ,size: "100x100") %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" >
+              <%= link_to "Fix Profile",edit_profiles_path(@user.id),:class => "btn btn-primary" %>
+              <%= link_to "Delete Account", profiles_path(@user.id),:method => "delete" ,:class => "btn btn-danger" %>
+          </td>
+        </tr>
+    </table>
+</div>
