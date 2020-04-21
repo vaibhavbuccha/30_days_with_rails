@@ -1,0 +1,42 @@
+<div class="col-sm-12">
+      <a href="<%= new_posts_path %>" class="btn btn-default" style="float:right;" >Create New Blog</a>
+      <h3>All Posts</h3>
+      <hr>
+      <% color = ['lightblue','lightcoral','lightcyan','lightgoldenrodyellow', 'lightgreen','lightsalmon']  %>
+      <% if post_count > 0  %>
+          <% @posts.each do |p| %>
+          <% u = User.find(p.user_id) %>
+             <div class="post-div">
+               <div class="creator" style="background: <%= color.sample(random: SecureRandom)  %>" >
+                 <% if u.image.attached? %>
+                   <%= image_tag u.image , :width => "32px" ,:height => "32px" ,:class => "img-circle" %>
+                  <% else %>
+                    <%= image_tag 'no_user.png' , :width => "32px" ,:height => "32px" ,:class => "img-circle" %>
+                  <%end%>
+                 &nbsp;&nbsp; <%= u.first_name+' '+u.last_name %>
+                  <p style="float :right" ><i><small><%= time_ago_in_words(p.created_at,include_seconds: true)%></small></i></p>
+               </div>
+
+                 <div class="title">
+                     <i><q><b><%= p.title %></b></q></i>
+                 </div>
+
+                   <div align="center" class="col-sm-12">
+                     <% width = 950 /  p.post_images.count  %>
+                     <% p.post_images.each do |i|  %>
+                            <%= image_tag i ,:width => "#{width}"  ,:height => "200px;" ,:class =>"img-rounded" %>
+                     <%end%>
+                   </div>
+
+                 <div class="content">
+                   <%= p.content %>
+                 </div>
+             </div>
+             <br>
+          <% end %>
+      <% else %>
+          <div class="alert alert-warning text-center">
+                <h5><i><q>Posts Unavailable</q></i></h5>
+          </div>
+      <% end %>
+</div>
