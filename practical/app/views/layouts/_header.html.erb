@@ -10,7 +10,7 @@
          <li><a href="<%= profiles_path(current_user.id) %>"><%= current_user.first_name+' '+current_user.last_name %></a></li>
           <li>
               <!-- <i class="fa fa-sign-out" > -->
-                <%= link_to :Logout, destroy_user_session_path , :method => "delete" %>
+                <%= link_to :Logout, destroy_user_session_path , :method => "delete",:data => {:confirm => 'Are you sure?'} %>
               <!-- </i> -->
           </li>
        </ul>

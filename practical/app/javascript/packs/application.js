@@ -10,7 +10,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 // require('jquery').start()
 // require('jquery_ujs').start()
-require('test').start()
+// require('test').start()
 require("channels")
 
 
