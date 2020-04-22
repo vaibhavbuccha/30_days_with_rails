@@ -1,12 +1,62 @@
-<ul style=" list-style-type: none;">
-   <li class="sidebar_nav" >
-     <a class="nav-link sidenav"  href="<%= root_path %>" >
-       <i class="fa fa-dashboard" > Dashboard</i>
-     </a>
-   </li>
-   <li  class="sidebar_nav" >
-     <a class="nav-link sidenav" href="<%= all_post_path %>" >
-       <i class="fa fa-sticky-note-o" > Posts</i>
-     </a>
-   </li>
-</ul>
+
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+
+      <span class="brand-text font-weight-light">AdminLTE 3</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <!-- <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
+          <% if current_user.image.attached? %>
+              <%= image_tag(current_user.image ,:class => "img-circle elevation-2", :width => "128px" ,:height => "128px"  ) %>
+          <% else %>
+              <%= image_tag('no_user.png' ,:class => "img-circle elevation-2" , :width => "128px" ,:height => "128px" ) %>
+          <% end %>
+        </div>
+        <div class="info">
+          <a href="#" class="d-block"><%= current_user.first_name+' '+current_user.last_name %></a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+          <li class="nav-item">
+            <a href="<%= root_path %>" class="nav-link">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                Dashboard
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+
+
+
+
+
+          <li class="nav-item">
+            <a href="<%= all_post_path %>" class="nav-link">
+              <i class="nav-icon fa fa-image"></i>
+              <p>
+                Post
+              </p>
+            </a>
+          </li>
+
+
+
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

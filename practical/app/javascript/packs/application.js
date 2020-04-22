@@ -17,3 +17,12 @@ require("jquery")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+import '../stylesheets/application'
+import './bootstrap_custom.js'
+import './bootstrap.bundle.min.js'
+import './adminlte.js'
+import './Chart.min.js'
+
+import './demo.js'
+import './dashboard.js'

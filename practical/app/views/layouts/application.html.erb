@@ -6,35 +6,45 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body  class="hold-transition sidebar-mini" >
 
-      <!-- <div class="col-sm-9"> -->
-        <%= render "layouts/header" %>
-      <!-- </div> -->
+    <div class="wrapper">
+      <!-- navbar -->
+       <%= render "layouts/header" %>
+       <!-- nav -->
 
-
-          <div class="col-sm-2 sidebar">
-            <%= render "shared/sidebar" %>
-          </div>
-          <div class="col-sm-10 content-wrapper">
-            <% flash.each do |type,message| %>
-              <% if type == 'notice' || type == 'alert' %>
-                <div class="alert alert-info"><%= message %></div>
-               <%else%>
-                 <div class="alert alert-<%= type %>"><%= message %></div>
-               <%end%>
-            <%end%>
-            <%= yield %>
-          </div>
+  <!-- Sidebar -->
+       <%= render "shared/sidebar" %>
 
 
+       <div class="content-wrapper">
+         <% flash.each do |type,message| %>
+             <% if type == 'notice' || type == 'alert' %>
+               <div class="alert alert-info"><%= message %></div>
+              <%else%>
+                <div class="alert alert-<%= type %>"><%= message %></div>
+              <%end%>
+           <%end%>
+           <%= yield %>
+        </div>
+    <aside class="control-sidebar control-sidebar-dark">
+       <!-- Control sidebar content goes here -->
+     </aside>
+     <!-- /.control-sidebar -->
 
+     <!-- Main Footer -->
+     <footer class="main-footer">
+       <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io/">AdminLTE.io</a>.</strong>
+       All rights reserved.
+       <div class="float-right d-none d-sm-inline-block">
+         <b>Version</b> 3.0.0
+       </div>
+     </footer>
+   </div>
 
-
-  </body>
    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'test', 'data-turbolinks-track': 'reload' %>
     <script>
@@ -42,4 +52,6 @@
           alert('jquery is loaded');
       });
     </script>
+
+      </body>
 </html>
