@@ -1,0 +1,11 @@
+
+
+<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+<script>
+  $('#logout').on('click',()=>{
+    setTimeout(()=>{
+        location.href = "<%= root_path %>";
+    },1000);
+
+  });
+</script>
