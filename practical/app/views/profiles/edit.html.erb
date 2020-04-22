@@ -1,52 +1,81 @@
-<div>
-    <h3>
-      Fix Profile
-    </h3>
-    <hr>
-    <table class=" table table-bordered" >
-      <%= form_for( @user,:url => profiles_path(@user) , :method => "patch") do |f| %>
-        <tr>
-          <th><%= f.label :first_name %></th>
-          <td>
-              <%= f.text_field :first_name , :class => "form-control" ,:required => true %>
-          </td>
-        </tr>
-        <tr>
-          <th><%= f.label :last_name %></th>
-          <td>
-              <%= f.text_field :last_name , :class => "form-control" ,:required => true %>
-          </td>
-        </tr>
-        <tr>
-          <th><%= f.label :email %></th>
-          <td>
-              <%= f.email_field :email , :class => "form-control" ,:required => true , :readonly => true  %>
-          </td>
-        </tr>
-        <tr>
-          <th><%= f.label :gender %></th>
-          <td>
-              <%= radio_button(:user ,'gender' , 1) %> <i class="fa fa-male" > Male</i>   &nbsp;&nbsp; <%= radio_button(:user ,'gender' , 2) %> <i class="fa fa-female" > female</i>
-          </td>
-        </tr>
-        <tr>
-          <th>DOB</th>
-          <td>
-              <%= f.date_field :dob , :class => "form-control" %>
-          </td>
-        </tr>
-        <tr>
-          <th><%= f.label :image %></th>
-          <td>
-            <%= f.file_field :image , :class => "form-control"    %>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2" >
-              <%= f.submit "Update",:class => "btn btn-primary" %>
-              <%= link_to "Cancel", profiles_path(@user.id), :class => "btn btn-danger" %>
-          </td>
-        </tr>
-        <%end%>
-    </table>
-</div>
+<!-- Content Header (Page header) -->
+   <div class="content-header">
+     <div class="container-fluid">
+       <div class="row mb-2">
+         <div class="col-sm-6">
+           <h1 class="m-0 text-dark">Fix Profile</h1>
+         </div><!-- /.col -->
+         <div class="col-sm-6">
+           <ol class="breadcrumb float-sm-right">
+             <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+             <li class="breadcrumb-item active">Fix Profile</li>
+           </ol>
+         </div><!-- /.col -->
+       </div><!-- /.row -->
+     </div><!-- /.container-fluid -->
+   </div>
+   <!-- /.content-header -->
+   <section class="content">
+     <div class="container-fluid">
+       <!-- Info boxes -->
+       <div class="row">
+         <div class="col-12 col-sm-12 col-md-12">
+           <div class="info-box">
+          <table class=" table table-bordered" >
+            <%= form_for( @user,:url => profiles_path(@user) , :method => "patch") do |f| %>
+              <tr>
+                <th><%= f.label :first_name %></th>
+                <td>
+                    <%= f.text_field :first_name , :class => "form-control" ,:required => true %>
+                </td>
+              </tr>
+              <tr>
+                <th><%= f.label :last_name %></th>
+                <td>
+                    <%= f.text_field :last_name , :class => "form-control" ,:required => true %>
+                </td>
+              </tr>
+              <tr>
+                <th><%= f.label :email %></th>
+                <td>
+                    <%= f.email_field :email , :class => "form-control" ,:required => true , :readonly => true  %>
+                </td>
+              </tr>
+              <tr>
+                <th><%= f.label :gender %></th>
+                <td>
+                    <%= radio_button(:user ,'gender' , 1) %> <i class="fa fa-male" > Male</i>   &nbsp;&nbsp; <%= radio_button(:user ,'gender' , 2) %> <i class="fa fa-female" > female</i>
+                </td>
+              </tr>
+              <tr>
+                <th>DOB</th>
+                <td>
+                    <%= f.date_field :dob , :class => "form-control" %>
+                </td>
+              </tr>
+              <tr>
+                <th><%= f.label :image %></th>
+                <td>
+                  <%= f.file_field :image , :class => "form-control"    %>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" >
+                    <%= f.submit "Update",:class => "btn btn-primary" %>
+                    <%= link_to "Cancel", profiles_path(@user.id), :class => "btn btn-danger" %>
+                </td>
+              </tr>
+              <%end%>
+          </table>
+        </div>
+      </div>
+       <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+
+
+
+      </div><!--/. container-fluid -->
+      </section>
+      <!-- /.content -->

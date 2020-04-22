@@ -53,6 +53,7 @@
           </a>
           <div class="dropdown-divider"></div>
           <%= link_to :Logout, destroy_user_session_path(current_user.id) ,:class=>"dropdown-item dropdown-footer", :method => "delete",:data => {:confirm => 'Are you sure?'} %>
+
         </div>
       </li>
       <!-- Notifications Dropdown Menu -->
