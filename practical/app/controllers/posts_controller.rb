@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   layout 'application'
   def index
-    @posts = Post.all.order('created_at DESC').page(params[:page] || 1 ).per(1)
+    @posts = Post.all.order('created_at DESC').page(params[:page] || 1 ).per(4)
   end
 
   def new
@@ -18,7 +18,7 @@ class PostsController < ApplicationController
       redirect_to all_post_path
     else
       flash[:danger] = "Something wents wrong! try again..."
-      render @post
+      render 'new'
     end
   end
 

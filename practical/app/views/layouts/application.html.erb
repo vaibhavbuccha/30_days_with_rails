@@ -23,9 +23,9 @@
        <div class="content-wrapper">
          <% flash.each do |type,message| %>
              <% if type == 'notice' || type == 'alert' %>
-               <div class="alert alert-info"><%= message %></div>
+               <blockquote class="alert alert-info"><%= message %></blockquote>
               <%else%>
-                <div class="alert alert-<%= type %>"><%= message %></div>
+                <blockquote class="alert alert-<%= type %>"><%= message %></blockquote>
               <%end%>
            <%end%>
            <%= yield %>
