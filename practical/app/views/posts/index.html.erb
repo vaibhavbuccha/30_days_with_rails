@@ -51,13 +51,14 @@
                            <div class="title">
                                <i><q><b><%= p.title %></b></q></i>
                            </div>
-
+                            <% if p.post_images.attached? %>
                              <div align="center" class="col-sm-12">
                                <% width = 950 /  p.post_images.count  %>
                                <% p.post_images.each do |i|  %>
                                       <%= image_tag i ,:width => "#{width}"  ,:height => "200px;" ,:class =>"img-rounded" %>
                                <%end%>
                              </div>
+                             <%end%>
 
                            <div class="content">
                              <%= p.content %>
@@ -70,6 +71,10 @@
                           <h5><i><q>Posts Unavailable</q></i></h5>
                     </div>
                 <% end %>
+                <div class="col-sm-12" >
+                    <%= paginate @posts %>
+                </div>
+
           </div>
           <!-- main -->
 
