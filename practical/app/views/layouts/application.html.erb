@@ -4,8 +4,9 @@
     <% title = '' %>
     <% title = 'Dashboard' if controller.controller_name == 'dashboard' %>
     <% title = 'Posts' if controller.controller_name == 'posts' %>
+    <% title = 'Profile' if controller.controller_name == 'profiles' %>
 
-    <title><%= title %></title>
+    <title><%= '::'+title+'::' %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
