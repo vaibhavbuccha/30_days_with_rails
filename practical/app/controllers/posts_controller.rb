@@ -9,6 +9,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @posts = Post.all.where(:user_id => params[:format]).order('created_at DESC')
   end
 
   def create

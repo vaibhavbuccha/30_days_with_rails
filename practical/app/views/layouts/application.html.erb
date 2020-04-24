@@ -1,7 +1,11 @@
  <!DOCTYPE html>
 <html>
   <head>
-    <title>Practical</title>
+    <% title = '' %>
+    <% title = 'Dashboard' if controller.controller_name == 'dashboard' %>
+    <% title = 'Posts' if controller.controller_name == 'posts' %>
+
+    <title><%= title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

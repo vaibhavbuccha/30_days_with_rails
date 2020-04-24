@@ -1,2 +1,84 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<!-- Content Header (Page header) -->
+   <div class="content-header">
+     <div class="container-fluid">
+       <div class="row mb-2">
+         <div class="col-sm-6">
+           <h1 class="m-0 text-dark">My Posts</h1>
+         </div><!-- /.col -->
+         <div class="col-sm-6">
+           <ol class="breadcrumb float-sm-right">
+             <li class="breadcrumb-item"><a href="<%= root_path %>">Home</a></li>
+             <li class="breadcrumb-item active">Posts</li>
+             <li class="breadcrumb-item active">My Post</li>
+           </ol>
+         </div><!-- /.col -->
+       </div><!-- /.row -->
+
+     </div><!-- /.container-fluid -->
+   </div>
+   <!-- /.content-header -->
+
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Info boxes -->
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-12">
+              <div class="info-box">
+                <!-- main -->
+             <div class="col-sm-12">
+                   <% color = ['lightblue','lightcoral','lightcyan','lightgoldenrodyellow', 'lightgreen','lightsalmon']  %>
+                   <% if @posts.count > 0  %>
+                       <% @posts.each do |p| %>
+                       <% u = User.find(p.user_id) %>
+                          <div class="post-div">
+                            <blockquote class="creator" style="background: <%= color.sample(random: SecureRandom)  %>" >
+                              <% if u.image.attached? %>
+                                <%= image_tag u.image , :width => "32px" ,:height => "32px" ,:class => "img-circle" %>
+                               <% else %>
+                                 <%= image_tag 'no_user.png' , :width => "32px" ,:height => "32px" ,:class => "img-circle" %>
+                               <%end%>
+                              &nbsp;&nbsp;  <%= u.first_name+' '+u.last_name %>
+                               <p style="float :right" ><i><small><%= time_ago_in_words(p.created_at,include_seconds: true)%></small></i></p>
+                            </blockquote>
+
+                              <blockquote class="title">
+                                  <i><q><b><%= p.title %></b></q></i>
+                              </blockquote>
+                               <% if p.post_images.attached? %>
+                                <div align="center" class="col-sm-12">
+                                  <% width = 950 /  p.post_images.count  %>
+                                  <% p.post_images.each do |i|  %>
+                                         <%= image_tag i ,:width => "#{width}"  ,:height => "200px;" ,:class =>"img-rounded" %>
+                                  <%end%>
+                                </div>
+                                <%end%>
+
+                              <blockquote class="content">
+                                <%= p.content %>
+                              </blockquote>
+                              <div align="center" >
+                                  <a href="" class="btn btn-danger" data-method="delete" data-confirm="Are you Sure"  ><i class="fa fa-trash"></i></a>
+                              </div>
+                          </div>
+                          <br>
+                       <% end %>
+                   <% else %>
+                       <div class="alert alert-warning text-center">
+                             <h5><i><q>Posts Unavailable</q></i></h5>
+                       </div>
+                   <% end %>
+                   <div class="col-sm-12" >
+
+                   </div>
+
+             </div>
+             <!-- main -->
+
+   </div>
+   </div>
+   <!-- /.col -->
+   </div>
+   <!-- /.row -->
+   </div><!--/. container-fluid -->
+   </section>
+   <!-- /.content -->
