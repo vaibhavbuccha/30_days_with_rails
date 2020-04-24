@@ -30,7 +30,7 @@
                    <% if @posts.count > 0  %>
                        <% @posts.each do |p| %>
                        <% u = User.find(p.user_id) %>
-                          <div class="post-div">
+                          <div class="post-div" id="post<%= p.id %>">
                             <blockquote class="creator" style="background: <%= color.sample(random: SecureRandom)  %>" >
                               <% if u.image.attached? %>
                                 <%= image_tag u.image , :width => "32px" ,:height => "32px" ,:class => "img-circle" %>
@@ -57,7 +57,7 @@
                                 <%= p.content %>
                               </blockquote>
                               <div align="center" >
-                                  <a href="" class="btn btn-danger" data-method="delete" data-confirm="Are you Sure"  ><i class="fa fa-trash"></i></a>
+                                  <button class="btn btn-danger" onclick="deleteBlog(<%= p.id %>)" ><i class="fa fa-trash"></i></button>
                               </div>
                           </div>
                           <br>
@@ -82,3 +82,19 @@
    </div><!--/. container-fluid -->
    </section>
    <!-- /.content -->
+
+<script type="text/javascript">
+    let deleteBlog = (id) =>{
+        $('#post'+id).fadeOut();
+        $.ajax({
+          url : "<%= posts_path() %>",
+          type : "DELETE",
+          data :{
+            'id' : id
+          },
+          success : (data) =>{
+            swal(data.success)
+          }
+        })
+    }
+</script>
