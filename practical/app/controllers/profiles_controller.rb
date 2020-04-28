@@ -9,6 +9,7 @@ class ProfilesController < ApplicationController
 
   def update
     @user = User.find(params[:format])
+    binding.pry
     if @user.update_attributes(user_params)
         flash[:success] = "Profile Successfully Updated.."
         redirect_to profiles_path

@@ -1,5 +1,6 @@
 class LikesController < ApplicationController
   protect_from_forgery with: :null_session
+  include LikesHelper
 
   def create
     # binding.pry
@@ -7,16 +8,20 @@ class LikesController < ApplicationController
       @like = Like.where(user_id: params[:user_id] ,post_id: params[:post_id])
       @like = Like.find(@like.ids[0])
       if @like.destroy
-        render json: {success: "Unliked"}
+        total_likes = like_count( params[:post_id])
+        render json: {success: "Unliked" , likes: "#{total_likes}"  }
       else
-        render json: {success: "failed"}
+        total_likes = like_count( params[:post_id])
+        render json: {success: "failed" , likes: "#{total_likes}" }
       end
     else
       @like = Like.new(like_params)
       if @like.save
-        render json: {success: "liked"}
+        total_likes = like_count( params[:post_id])
+        render json: {success: "liked" , likes:"#{total_likes}"}
       else
-        render json: {success: "failed"}
+        total_likes = like_count( params[:post_id])
+        render json: {success: "failed" , likes: "#{total_likes}"}
       end
     end
   end
