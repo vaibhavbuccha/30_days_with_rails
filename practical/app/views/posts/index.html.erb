@@ -71,23 +71,22 @@
                               </div>
                               <div class="col-sm-11 comment-box"  >
                                   <div class="row">
-                                    <!-- <div class="col-sm-12 comment">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                                        aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                        cupidatat non proident, sunt in culpa qui officia deserunt
-                                        mollit anim id est laborum.
-                                        <span class="badge bg-gray" ><small>Reply</small></span>
-                                    </div> -->
+                                    <div id="showCommentBox<%= p.id %>" >
+                                      <% if p.comments.count > 0 %>
+                                        <% p.comments.each do |c| %>
+                                        <div class="container comment">
+                                            <b><%= get_comment_username(c.user_id) %> :- </b><%= c.comment %>
+                                            <span class="badge bg-gray" ><small>Reply</small></span>
+                                        </div>
+                                        <% end %>
+                                      <% end %>
+                                    </div>
                                       <div class="col-sm-11">
 
-                                          <input type="text" class="form-control" placeholder="Enter Comment..." name="" value="">
+                                          <input type="text" class="form-control" id="comment<%= p.id %>" placeholder="Enter Comment..." name="" value="">
                                       </div>
                                       <div class="col-sm-1 sendbox" >
-                                          <i class="fa fa-send" ></i>
+                                          <i class="fa fa-send" onclick="pushComment(<%= p.id %>)" ></i>
                                       </div>
                                   </div>
                               </div>
@@ -132,5 +131,29 @@
         $('#like_count'+id).html(data.likes);
       }
     })
+  }
+
+
+  function pushComment(id)
+  {
+      let comment = $('#comment'+id).val();
+      if (comment != ''){
+        $.ajax({
+          url : "<%= comments_path %>",
+          type : "post",
+          data : {
+            'comment[post_id]': id,
+            'comment[user_id]' : <%= current_user.id %>,
+            'comment[comment]': comment
+          },
+          success : function(data){
+            // alert(data);
+            let html = $('#showCommentBox'+id).html();
+            let allcomment = html + data;
+            $('#showCommentBox'+id).html(allcomment);
+            $('#comment'+id).val('');
+          }
+        });
+      }
   }
 </script>
