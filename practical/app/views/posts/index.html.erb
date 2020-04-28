@@ -64,7 +64,10 @@
                            <blockquote class="content">
                              <%= p.content %>
                            </blockquote>
-                           
+
+                           <div class="container" id="likeUnlike">
+                             <button type="button" onclick="like(<%= p.id %>)" name="button">Like</button>
+                           </div>
                        </div>
                        <br>
                     <% end %>
@@ -89,3 +92,19 @@
 </div><!--/. container-fluid -->
 </section>
 <!-- /.content -->
+<script type="text/javascript">
+  function like(id)
+  {
+    $.ajax({
+      url : '<%= likes_path %>',
+      type : 'post',
+      data : {
+        'user_id': <%= current_user.id %>,
+        'post_id': id
+      },
+      success : function(data){
+        alert(data);
+      }
+    })
+  }
+</script>

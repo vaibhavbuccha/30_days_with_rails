@@ -13,6 +13,7 @@ class User < ApplicationRecord
   validates_confirmation_of :password
   validates_uniqueness_of :email
 
+  has_many :likes, dependent: :destroy
   has_one_attached:image
-  has_many :post
+  has_many :posts
 end
