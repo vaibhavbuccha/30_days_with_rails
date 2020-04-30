@@ -88,3 +88,11 @@
   border-radius: 5px;
   width: 65vw !important;
 }
+.reply{
+  cursor: pointer;
+  transition-delay: 0.5s !important;
+  transition-timing-function: linear;
+}
+.reply:hover{
+  background: #000 !important;
+}

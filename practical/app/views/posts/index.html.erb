@@ -74,10 +74,10 @@
                                     <div id="showCommentBox<%= p.id %>" >
                                       <% if p.comments.count > 0 %>
                                         <% p.comments.each do |c| %>
-                                        <div class="container comment">
-                                            <b><%= get_comment_username(c.user_id) %> :- </b><%= c.comment %>
-                                            <span class="badge bg-gray" ><small>Reply</small></span>
-                                        </div>
+                                          <div class="container comment">
+                                              <b><%= get_comment_username(c.user_id) %> :- </b><%= c.comment %>
+                                              <button  class="badge bg-gray reply" onclick="reply('<%= get_comment_username(c.user_id) %>',<%= c.id %>,<%= p.id  %>)"   ><small>Reply</small></button>
+                                          </div>
                                         <% end %>
                                       <% end %>
                                     </div>
@@ -155,5 +155,13 @@
           }
         });
       }
+  }
+
+  function reply(name,comment_id,id)
+  {
+    $('#comment'+id).val('');
+    let html = "@"+name+" ";
+    $('#comment'+id).val(html);
+    // alert(name +' '+comment_id);
   }
 </script>

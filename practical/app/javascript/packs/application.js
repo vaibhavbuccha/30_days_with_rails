@@ -10,7 +10,8 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("jquery")
-require('@client-side-validations/client-side-validations')
+
+// require('@client-side-validations/client-side-validations')
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
@@ -23,7 +24,7 @@ import './bootstrap_custom.js'
 import './bootstrap.bundle.min.js'
 import './adminlte.js'
 import './Chart.min.js'
-
 import './demo.js'
+import './jquery.validate.js'
 import './dashboard.js'
 import './validation_rules.js'
