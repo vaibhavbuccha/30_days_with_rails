@@ -1,0 +1,63 @@
+<% color = ['lightblue','lightcoral','lightcyan','lightgoldenrodyellow', 'lightgreen','lightsalmon']  %>
+<% if post_count > 0  %>
+    <% @posts.each do |p| %>
+    <% u = User.find(p.user_id) %>
+<div class="post-div">
+  <blockquote class="creator" style="background: <%= color.sample(random: SecureRandom)  %>" >
+    <% if u.image.attached? %>
+      <%= image_tag u.image , :width => "32px" ,:height => "32px" ,:class => "img-circle" %>
+     <% else %>
+       <%= image_tag 'no_user.png' , :width => "32px" ,:height => "32px" ,:class => "img-circle" %>
+     <%end%>
+    &nbsp;&nbsp;  <%= u.first_name+' '+u.last_name %>
+     <p style="float :right" ><i><small><%= time_ago_in_words(p.created_at,include_seconds: true)%></small></i></p>
+  </blockquote>
+
+    <blockquote class="title">
+        <i><q><b><%= p.title %></b></q></i>
+    </blockquote>
+     <% if p.post_images.attached? %>
+      <div align="center" class="col-sm-12">
+        <% width = 950 /  p.post_images.count  %>
+        <% p.post_images.each do |i|  %>
+               <%= image_tag i ,:width => "#{width}"  ,:height => "200px;" ,:class =>"img-rounded" %>
+        <%end%>
+      </div>
+      <%end%>
+
+    <blockquote class="content">
+      <%= p.content %>
+    </blockquote>
+
+    <div class="row row-footer">
+       <div class="col-sm-1">
+           <i onclick="like(<%= p.id %>)" class="fa fa-heart <%= "liked" if check_like(p.id) > 0 %>" id="heart<%= p.id %>" ></i> <span class="like_count"  id="like_count<%= p.id %>" ><%= p.likes.count %><span>
+       </div>
+       <div class="col-sm-11 comment-box"  >
+           <div class="row">
+             <div id="showCommentBox<%= p.id %>" >
+               <% if p.comments.count > 0 %>
+                 <% p.comments.each do |c| %>
+                   <div class="container comment">
+                       <b><%= get_comment_username(c.user_id) %> :- </b><%= c.comment %>
+                       <button  class="badge bg-gray reply" onclick="reply('<%= get_comment_username(c.user_id) %>',<%= c.id %>,<%= p.id  %>)"   ><small>Reply</small></button>
+                   </div>
+                 <% end %>
+               <% end %>
+             </div>
+               <div class="col-sm-11">
+
+                   <input type="text" class="form-control" id="comment<%= p.id %>" placeholder="Enter Comment..." name="" value="">
+               </div>
+               <div class="col-sm-1 sendbox" >
+                   <i class="fa fa-send" onclick="pushComment(<%= p.id %>)" ></i>
+               </div>
+           </div>
+       </div>
+    </div>
+</div>
+<% end %>
+<div class="col-sm-12" >
+    <%= paginate @posts %>
+</div>
+<% end %>

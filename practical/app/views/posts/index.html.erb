@@ -29,11 +29,19 @@
            <div class="info-box">
              <!-- main -->
           <div class="col-sm-12">
-            <div align="right" class="container">
-                 <a href="<%= new_posts_path %>" class="btn btn-default" >Create New Blog</a>
+            <div  class="row">
+              <div class="col-sm-4"></div>
+              <div class="col-sm-4">
+                  <input type="text" value="" onkeyup="search()" id="search" placeholder="Search" class="form-control" >
+              </div>
+              <div align="right" class="col-sm-4">
+                  <a href="<%= new_posts_path %>" class="btn btn-default" >Create New Blog</a>
+              </div>
+
             </div>
             <hr>
             <br>
+            <div id="post-div" >
                 <% color = ['lightblue','lightcoral','lightcyan','lightgoldenrodyellow', 'lightgreen','lightsalmon']  %>
                 <% if post_count > 0  %>
                     <% @posts.each do |p| %>
@@ -94,14 +102,16 @@
                        </div>
                        <br>
                     <% end %>
+                    <div class="col-sm-12" >
+                        <%= paginate @posts %>
+                    </div>
                 <% else %>
+              </div>
                     <div class="alert alert-warning text-center">
                           <h5><i><q>Posts Unavailable</q></i></h5>
                     </div>
                 <% end %>
-                <div class="col-sm-12" >
-                    <%= paginate @posts %>
-                </div>
+
 
           </div>
           <!-- main -->
@@ -163,5 +173,22 @@
     let html = "@"+name+" ";
     $('#comment'+id).val(html);
     // alert(name +' '+comment_id);
+  }
+
+  // serach function
+  function search()
+  {
+    let search = $('#search').val();
+    // alert(search);
+    $.ajax({
+      url : "<%= search_path %>",
+      method: "get",
+      data :{
+        search: search
+      },
+      success:(data)=>{
+        $('#post-div').html(data);
+      }
+    });
   }
 </script>
