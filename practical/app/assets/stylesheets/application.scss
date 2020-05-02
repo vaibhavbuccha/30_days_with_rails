@@ -96,3 +96,14 @@
 .reply:hover{
   background: #000 !important;
 }
+.loader{
+  width : 100vw;
+  height: 100vh;
+  position:fixed;
+  background: rgba(0,0,0,0.5);
+  z-index: 9999;
+}
+.loader-img{
+  margin: 150px 526px;
+  width: 300px;
+}

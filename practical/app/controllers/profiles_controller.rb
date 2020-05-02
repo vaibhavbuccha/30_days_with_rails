@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :get_user , only: [:show,:edit]
+  before_action :delete_relative_posts , only: [:destroy]
   layout 'application'
   def show
   end
@@ -9,7 +10,7 @@ class ProfilesController < ApplicationController
 
   def update
     @user = User.find(params[:format])
-    binding.pry
+    # binding.pry
     if @user.update_attributes(user_params)
         flash[:success] = "Profile Successfully Updated.."
         redirect_to profiles_path
@@ -38,5 +39,13 @@ class ProfilesController < ApplicationController
     params.require(:user).permit(:first_name,:last_name,:email,:gender,:dob,:image)
   end
 
+  def delete_relative_posts
+    @posts = Post.where(user_id: current_user.id)
+    if @posts.count > 0
+      @posts.each do |p|
+        Post.destroy(p.id)
+      end
+    end
+  end
 
 end
