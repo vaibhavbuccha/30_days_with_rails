@@ -7,11 +7,6 @@ class DashboardController < ApplicationController
 
 
   private
-  def check_session
-    if user_signed_in? == false
-      redirect_to new_user_session_path
-    end
-  end
 
   def get_user_detail
     @user = User.find(current_user.id)

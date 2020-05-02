@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   protect_from_forgery with: :null_session
+  before_action :check_session , only: [:index ,:create , :new, :show ,:update ,:destroy]
   layout 'application'
 
   def index

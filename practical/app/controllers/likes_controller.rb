@@ -1,5 +1,6 @@
 class LikesController < ApplicationController
   protect_from_forgery with: :null_session
+  before_action :check_session , only: [:create]
   include LikesHelper
 
   def create

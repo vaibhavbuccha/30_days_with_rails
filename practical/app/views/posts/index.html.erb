@@ -82,9 +82,12 @@
                                     <div id="showCommentBox<%= p.id %>" >
                                       <% if p.comments.count > 0 %>
                                         <% p.comments.each do |c| %>
-                                          <div class="container comment">
+                                          <div class="container comment" id="commentid<%= c.id %>">
                                               <b><%= get_comment_username(c.user_id) %> :- </b><%= c.comment %>
                                               <button  class="badge bg-gray reply" onclick="reply('<%= get_comment_username(c.user_id) %>',<%= c.id %>,<%= p.id  %>)"   ><small>Reply</small></button>
+                                              <% if c.user_id == current_user.id %>
+                                              <button  class="badge bg-gray reply" onclick="deleteComment(<%= c.id %>)"   ><small>Delete</small></button>
+                                              <% end %>
                                           </div>
                                         <% end %>
                                       <% end %>
@@ -190,5 +193,18 @@
         $('#post-div').html(data);
       }
     });
+  }
+
+  function deleteComment(id)
+  {
+      $('#commentid'+id).hide();
+      $.ajax({
+        url : "<%= comments_path %>",
+        method : "Delete",
+        data : {
+          id: id
+        },
+        success : (data)=>{}
+      });
   }
 </script>

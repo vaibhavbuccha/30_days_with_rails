@@ -1,7 +1,10 @@
 class ProfilesController < ApplicationController
   before_action :get_user , only: [:show,:edit]
-  before_action :delete_relative_posts , only: [:destroy]
+  before_action :delete_relatives , only: [:destroy]
+  before_action :check_session , only: [ :edit,:show ,:update ,:destroy]
   layout 'application'
+  include UsersHelper
+
   def show
   end
 
@@ -39,13 +42,10 @@ class ProfilesController < ApplicationController
     params.require(:user).permit(:first_name,:last_name,:email,:gender,:dob,:image)
   end
 
-  def delete_relative_posts
-    @posts = Post.where(user_id: current_user.id)
-    if @posts.count > 0
-      @posts.each do |p|
-        Post.destroy(p.id)
-      end
-    end
+  def delete_relatives
+    delete_relative_posts
+    delete_relative_comments
+    delete_relative_likes
   end
 
 end

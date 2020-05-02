@@ -1,5 +1,6 @@
 
-<div class="container comment">
+<div class="container comment" id="commentid<%= @comment.id %>">
     <b><%= get_comment_username(@comment.user_id) %> :- </b><%= @comment.comment %>
     <span class="badge bg-gray" ><small>Reply</small></span>
+    <button  class="badge bg-gray reply" onclick="deleteComment(<%= @comment.id %>)"   ><small>Delete</small></button>
 </div>
