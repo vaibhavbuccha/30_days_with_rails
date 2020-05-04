@@ -10,7 +10,8 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("jquery")
-
+require("moment/locale/ja")
+require("tempusdominus-bootstrap-4")
 // require('@client-side-validations/client-side-validations')
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -27,4 +28,4 @@ import './Chart.min.js'
 import './demo.js'
 import './jquery.validate.js'
 import './dashboard.js'
-import './validation_rules.js'
+
