@@ -1,2 +1,0 @@
-class AddgenderanddobtoUser < ApplicationRecord
-end

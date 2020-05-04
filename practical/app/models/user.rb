@@ -9,9 +9,9 @@ class User < ApplicationRecord
 
   validates_presence_of :first_name, :last_name ,:email
   validates_presence_of :password, :on => :create
-  validates_length_of :password, :minimum => 6
-  validates_confirmation_of :password
-  validates_uniqueness_of :email
+  validates_length_of :password, :minimum => 6 , :on => :create
+  validates_confirmation_of :password , :on => :create
+  validates_uniqueness_of :email ,:on => :create
 
   has_many :likes, dependent: :destroy
   has_one_attached:image
